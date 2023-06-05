@@ -1,25 +1,52 @@
-from sympy import symbols, sympify
+from sympy import sin, pi, exp, sqrt, symbols
 # --example--
 # print(sin(0))
 # >>> 0
 # -----------
 
-N = int(input("分割数を入力してください: ") or 100)
+# n:分割数, l:区間下限, u:区間上限
+def d(n=100, l=0, u=1):
 
-# 実数以外（pi等）に対応するためsympifyを使いました
-a = sympify(input("積分区間の下限値を入力してください: ") or "0")
-b = sympify(input("積分区間の上限値を入力してください: ") or "1")
+    def a(l):
+        return l
+
+    def b(u):
+        return u
 
 # 変数xを定義
+    x = symbols("x")
+
+# 台形積分
+    h = (b(u) - a(l)) / n
+    S = (h / 2) * (f.subs(x, a(l)) + 2 * sum(f.subs(x, a(l) + h * i) for i in range(1, n)) + f.subs(x, b(u))) 
+
+    return S
+
 x = symbols("x")
 
-expression = input("関数f(x)の式を入力してください: ")
+# (1)
+n = 50
+l = 0
+u = pi / 2
+f = sin(x)
 
-# 関数f(x)を定義
-f = sympify(expression)
+result = d(n, l, u) 
+print("(1)", float(result))
 
-# 台形積分　sympyを用いたため、f.subsで変数置換を行った
-h = (b - a) / N
-S = (h / 2) * (f.subs(x, a) + 2 * sum(f.subs(x, a + h * i) for i in range(1, N)) + f.subs(x, b)) 
-    
-print(float(S))
+# (2)
+n = 100
+l = 0
+u = 1
+f = 4 / (1 + x**2)
+
+result = d(n, l, u) 
+print("(2)", float(result))
+
+# (3)
+n = 1000
+l = -100
+u = 100
+f = sqrt(pi)*exp(-x**2)
+
+result = d(n, l, u) 
+print("(3)", float(result))
