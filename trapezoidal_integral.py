@@ -1,18 +1,52 @@
-from math import sin, pi
+from sympy import sin, pi, exp, sqrt, symbols
 # --example--
 # print(sin(0))
 # >>> 0
 # -----------
 
-def f(x):
-    return sin(x)
+# n:分割数, l:区間下限, u:区間上限
+def d(n=100, l=0, u=1):
 
-N = 100
+    def a(l):
+        return l
 
-a = 0
-b = 1 / 2 * pi
-h = (b - a) / N
+    def b(u):
+        return u
 
-S = (h / 2) * (f(a) + 2 * sum(f(a + h * i) for i in range(1, N)) + f(b))
+# 変数xを定義
+    x = symbols("x")
 
-print(S)
+# 台形積分
+    h = (b(u) - a(l)) / n
+    S = (h / 2) * (f.subs(x, a(l)) + 2 * sum(f.subs(x, a(l) + h * i) for i in range(1, n)) + f.subs(x, b(u))) 
+
+    return S
+
+x = symbols("x")
+
+# (1)
+n = 50
+l = 0
+u = pi / 2
+f = sin(x)
+
+result = d(n, l, u) 
+print("(1)", float(result))
+
+# (2)
+n = 100
+l = 0
+u = 1
+f = 4 / (1 + x**2)
+
+result = d(n, l, u) 
+print("(2)", float(result))
+
+# (3)
+n = 1000
+l = -100
+u = 100
+f = sqrt(pi)*exp(-x**2)
+
+result = d(n, l, u) 
+print("(3)", float(result))

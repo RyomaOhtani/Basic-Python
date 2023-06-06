@@ -9,9 +9,9 @@ def gcd(x, y):
         x, y = y, x % y
     return x
 
-# a > b になるように入れ替え
-if a < b:
-    a, b = b, a
+gcd_value = gcd(a, b)
 
-GCD = gcd(a, b)
-print(GCD)
+if gcd_value == 1:
+    print(f"{a}と{b}は互いに素です")
+else:
+    print(f"{a}と{b}の最大公約数は{gcd_value}であるため,互いに素ではありません")
