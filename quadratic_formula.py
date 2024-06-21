@@ -1,4 +1,6 @@
 # (1)
+import cmath
+from fractions import Fraction
 a = 1
 b = -6
 c = 9
@@ -12,7 +14,7 @@ a = 1
 b = 2
 c = -8
 # 解の公式
-x1 = (-b + (b ** 2 - 4 * a * c) ** 0.5) / (2 *  a)
+x1 = (-b + (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)
 x2 = (-b - (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)
 print(x1, x2)
 
@@ -23,8 +25,7 @@ c = -35
 # 解の公式
 x1 = (-b + (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)
 x2 = (-b - (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)
-#分数表示にしたいので,fractionsを使う
-from fractions import Fraction
+# 分数表示にしたいので,fractionsを使う
 X1 = Fraction(x1)
 X2 = Fraction(x2)
 print(X1, X2)
@@ -36,7 +37,6 @@ b = 0
 c = 1
 # 解の公式
 # 誤差を出さないためにルートをcmath.sqrtで表す。
-import cmath
 x1 = (-b + cmath.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
 x2 = (-b - cmath.sqrt(b ** 2 - 4 * a * c)) / (2 * a)
 print(x1, x2)
